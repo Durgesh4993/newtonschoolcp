@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+  long long N, A, B;
+  cin >> N >> A >> B;
+  long long blue_card_count = 0;
+  long long red_card_count = 0;
+  long long blue_card_count_per_cycle = A;
+  long long red_card_count_per_cycle = B;
+  long long cycle_count = N / (A + B);
+  blue_card_count = cycle_count * blue_card_count_per_cycle;
+  red_card_count = cycle_count * red_card_count_per_cycle;
+  long long remaining_card_count = N % (A + B);
+  if (remaining_card_count <= blue_card_count_per_cycle) {
+    blue_card_count += remaining_card_count;
+  } else {
+    blue_card_count += blue_card_count_per_cycle;
+    red_card_count += remaining_card_count - blue_card_count_per_cycle;
+  }
+  cout << blue_card_count << endl;
+  return 0;
+}
