@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
+int main() {
+  int n;
+  cin >> n;
+  vector<string> words;
+  unordered_map<string, int> word_count;
+  for (int i = 0; i < n; i++) {
+    string word;
+    cin >> word;
+    words.push_back(word);
+    word_count[word]++;
+  }
+  bool is_valid = true;
+  for (int i = 1; i < n; i++) {
+    if (words[i][0] != words[i - 1][words[i - 1].size() - 1]) {
+      is_valid = false;
+      break;
+    }
+    if (word_count[words[i]] > 1) {
+      is_valid = false;
+      break;
+    }
+  }
+  if (is_valid) {
+    cout << "Yes" << endl;
+  } else {
+    cout << "No" << endl;
+  }
+  return 0;
+}
